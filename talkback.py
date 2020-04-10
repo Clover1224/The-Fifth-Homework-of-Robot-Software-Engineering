@@ -3,12 +3,7 @@ import rospy, os, sys
 from std_msgs.msg import String
 from sound_play.libsoundplay import SoundClient
 from opencv_apps.msg import FaceArrayStamped
-from opencv_apps.msg import RotatedRectStamped
 from opencv_apps.msg import Face
-from opencv_apps.msg import Rect
-from opencv_apps.msg import RotatedRect
-from opencv_apps.msg import Point2D
-
 
 class TalkBack:
      def __init__(self, script_path):
@@ -36,7 +31,6 @@ class TalkBack:
 
          #the position of face detected
          self.face_x=0
-         self.face_y=0
          # Subscribe to the face_detection output
          rospy.Subscriber('/face_detection/faces', FaceArrayStamped, self.face_back)
   
@@ -48,7 +42,6 @@ class TalkBack:
          pos = face_data.faces
          if pos:
              self.face_x=pos[0].face.x
-             self.face_y=pos[0].face.y
 
      def talkback(self, msg):
          #Print the recognized words on the screen
