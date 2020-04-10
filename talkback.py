@@ -29,13 +29,12 @@ class TalkBack:
          # Subscribe to the recognizer output and set the callback function
          rospy.Subscriber('/lm_data', String, self.talkback)
 
-         #the position of face detected
          self.face_x=0
          # Subscribe to the face_detection output
          rospy.Subscriber('/face_detection/faces', FaceArrayStamped, self.face_back)
   
 
-         #Publish to the take_photo topic to use take_photo node
+         #Publish to the take_photo topic 
          self.take_photo = rospy.Publisher("/take_photo", String, queue_size=10)
              
      def face_back(self,face_data):
